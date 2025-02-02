@@ -1,4 +1,4 @@
-/* General Body Styling */
+/* General Styling */
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -7,19 +7,13 @@ body {
     padding: 0;
 }
 
-/* Welcome and Class Selection Screens */
-#welcome-screen, #class-screen, #junior-screen, #senior-screen, #ready-screen, #junior-race-screen, #senior-race-screen {
-    margin-top: 20%;
-}
-
-/* Buttons Styling */
 button {
     padding: 10px 20px;
     font-size: 18px;
     margin: 10px;
-    cursor: pointer;
     border: none;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 #welcome-screen button {
@@ -32,48 +26,19 @@ button {
     color: white;
 }
 
-#ready-btn {
-    margin-top: 20px;
-}
-
-#ready-screen button {
-    background-color: #ffc107;
-    color: black;
-}
-
-#ready-screen button:hover {
-    background-color: #e0a800;
-}
-
-/* Name Input Fields */
-ol {
-    list-style-type: none;
-    padding: 0;
-}
-
-ol li {
-    margin: 5px 0;
-}
-
-input[type="text"] {
-    width: 80%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Race Screens */
+/* List Styling */
 ul {
     list-style-type: none;
     padding: 0;
 }
 
 ul li {
-    margin: 10px 0;
-    font-size: 18px;
     padding: 10px;
+    margin: 10px 0;
     background-color: #f8f9fa;
     border: 1px solid #ddd;
     border-radius: 5px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
 }

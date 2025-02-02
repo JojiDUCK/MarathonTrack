@@ -24,6 +24,9 @@
         <div>
             <button id="ready-btn">READY</button>
         </div>
+        <div>
+            <button id="clear-data-btn">Clear Data</button>
+        </div>
     </div>
 
     <!-- Junior Class Screen -->
@@ -45,23 +48,29 @@
     <!-- READY Screen -->
     <div id="ready-screen" style="display: none;">
         <h2>Ready to Race?</h2>
-        <button id="back-to-class-btn">Back</button>
-        <button id="start-junior-btn">Junior Race</button>
-        <button id="start-senior-btn">Senior Race</button>
+        <div>
+            <button id="back-to-class-btn">Back</button>
+            <button id="start-junior-btn">Junior Race</button>
+            <button id="start-senior-btn">Senior Race</button>
+        </div>
     </div>
 
     <!-- Junior Race Screen -->
     <div id="junior-race-screen" style="display: none;">
         <h2>Junior Race</h2>
+        <button id="junior-go-btn">GO!</button>
         <ul id="junior-race-list"></ul>
         <button id="junior-back-to-ready-btn">Back</button>
+        <button id="junior-done-btn" style="display: none;">DONE</button>
     </div>
 
     <!-- Senior Race Screen -->
     <div id="senior-race-screen" style="display: none;">
         <h2>Senior Race</h2>
+        <button id="senior-go-btn">GO!</button>
         <ul id="senior-race-list"></ul>
         <button id="senior-back-to-ready-btn">Back</button>
+        <button id="senior-done-btn" style="display: none;">DONE</button>
     </div>
 
     <script src="script.js"></script>
