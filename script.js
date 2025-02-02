@@ -1,6 +1,7 @@
 // Track race state
 let raceTimers = {};
 let raceLaps = {};
+let raceInterval = null;
 
 // Welcome Screen -> Class Selection Screen
 document.getElementById("start-button").addEventListener("click", function () {
@@ -78,12 +79,14 @@ document.getElementById("start-senior-btn").addEventListener("click", function (
 document.getElementById("junior-back-to-ready-btn").addEventListener("click", function () {
     document.getElementById("junior-race-screen").style.display = "none";
     document.getElementById("ready-screen").style.display = "block";
+    stopRace(); // Stop timers when navigating back
 });
 
 // Back to READY Screen from Senior Race
 document.getElementById("senior-back-to-ready-btn").addEventListener("click", function () {
     document.getElementById("senior-race-screen").style.display = "none";
     document.getElementById("ready-screen").style.display = "block";
+    stopRace(); // Stop timers when navigating back
 });
 
 // GO Button Functionality
@@ -102,10 +105,10 @@ function startRace(raceListId, storageKey, raceType) {
     raceTimers = {};
     raceLaps = {};
 
-    raceList.innerHTML = ""; // Clear the list
+    raceList.innerHTML = "";
     names.forEach((name) => {
-        raceTimers[name] = 0; // Initialize timer
-        raceLaps[name] = 0;   // Initialize lap count
+        raceTimers[name] = 0;
+        raceLaps[name] = 0;
 
         const listItem = document.createElement("li");
         listItem.innerHTML = `
@@ -119,22 +122,27 @@ function startRace(raceListId, storageKey, raceType) {
         raceList.appendChild(listItem);
     });
 
-    // Start timers
-    const intervalId = setInterval(() => {
+    raceInterval = setInterval(() => {
         names.forEach((name) => {
-            raceTimers[name]++;
-            const timerElement = document.getElementById(`${raceType}-timer-${name}`);
-            if (timerElement) {
+            if (raceLaps[name] < 4) {
+                raceTimers[name]++;
+                const timerElement = document.getElementById(`${raceType}-timer-${name}`);
                 timerElement.textContent = formatTime(raceTimers[name]);
             }
         });
     }, 1000);
+}
 
-    raceTimers["intervalId"] = intervalId;
+// Stop the race
+function stopRace() {
+    clearInterval(raceInterval);
+    raceInterval = null;
 }
 
 // Record a lap
 function recordLap(name, listItem, raceType) {
+    if (raceLaps[name] >= 4) return; // Prevent further laps after completion
+
     raceLaps[name]++;
     if (raceLaps[name] === 2) {
         listItem.style.backgroundColor = "yellow";
@@ -147,7 +155,7 @@ function recordLap(name, listItem, raceType) {
     // Check if all runners are done
     if (Object.values(raceLaps).every((laps) => laps >= 4)) {
         document.getElementById(`${raceType}-done-btn`).style.display = "block";
-        clearInterval(raceTimers["intervalId"]); // Stop all timers
+        stopRace();
     }
 }
 
